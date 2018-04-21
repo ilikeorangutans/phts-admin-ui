@@ -14,20 +14,16 @@ export class PathService {
   ) { }
 
   apiHost(): string {
-    let base = this.document.baseURI;
     if (isDevMode()) {
-      base = 'http://localhost:8080';
+      return 'http://localhost:8080';
     }
 
-    if (base.endsWith('/')) {
-      base = base.substring(0, base.length - 1);
-    }
-
-    return base;
+    const url = new URL(this.document.baseURI);
+    return `${url.protocol}//${url.host}`;
   }
 
   apiBase(): string {
-    return [this.apiHost(), 'admin/api'].join('/');
+    return [this.apiHost(), 'api', 'admin'].join('/');
   }
 
   version(): string {

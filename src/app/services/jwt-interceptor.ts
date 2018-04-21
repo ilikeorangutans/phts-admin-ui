@@ -1,3 +1,4 @@
+import { PathService } from './path.service';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpRequest, HttpInterceptor, HttpHandler } from '@angular/common/http';
 
@@ -9,14 +10,12 @@ import { SessionService } from './session.service';
 export class JWTInterceptor implements HttpInterceptor {
 
   constructor(
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private pathservice: PathService
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler):
-    Observable<HttpEvent<any>> {
-
-    // TODO this is pretty shitty because it will catch all requests
-    if (req.url.endsWith('/admin/api/authenticate')) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.url === this.pathservice.authenticate()) {
       return next.handle(req);
     }
 
