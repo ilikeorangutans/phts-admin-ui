@@ -1,18 +1,15 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { PhtsService } from './../services/phts.service';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../services/session.service';
-
-import 'rxjs/add/observable/fromEvent';
+import { Router } from '@angular/router';
+import { PhtsService } from '../services/phts.service';
 
 @Component({
-  selector: 'admin-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-admin-shell',
+  templateUrl: './admin-shell.component.html',
+  styleUrls: ['./admin-shell.component.css']
 })
-export class AppComponent implements OnInit {
+export class AdminShellComponent implements OnInit {
 
   private readonly blargh = Observable.fromEvent(window, 'resize')
     .map(_ => window.innerWidth)
@@ -49,18 +46,19 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.sessionService.logout();
-    this.router.navigate(['admin']);
+    this.router.navigate(['login']);
   }
 
   toggleNav(): void {
     this.navBarClasses['show'] = !this.navBarClasses['show'];
   }
+
 }
 
 export class NavItem {
 
   constructor(
-    public title: string,
-    public link: string
+    public readonly title: string,
+    public readonly link: string
   ) { }
 }

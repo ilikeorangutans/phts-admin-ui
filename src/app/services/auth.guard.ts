@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { SessionService } from './services/session.service';
 import { CanActivateChild } from '@angular/router';
+import { SessionService } from './session.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     const loggedIn = this.sessionService.isLoggedIn();
 
     if (!loggedIn) {
-      this.router.navigate(['admin/login']);
+      this.router.navigate(['login']);
     }
 
     return loggedIn;

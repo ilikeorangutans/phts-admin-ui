@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from './../auth.service';
 import { PathService } from './path.service';
 import { Injectable } from '@angular/core';
 import { ShareSite } from '../models/share-site';

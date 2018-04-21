@@ -1,7 +1,6 @@
-import { Credentials } from './../auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { Credentials, AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'admin-login',
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.credentials)
       .then(success => {
         if (success) {
-          this.router.navigate(['admin']);
+          this.router.navigate(['/dashboard']);
         }
       });
   }

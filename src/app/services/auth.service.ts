@@ -1,8 +1,8 @@
-import { PathService } from './services/path.service';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
-import { SessionService } from './services/session.service';
+import { SessionService } from './session.service';
+import { PathService } from './path.service';
 
 export class Credentials {
   username: string;
