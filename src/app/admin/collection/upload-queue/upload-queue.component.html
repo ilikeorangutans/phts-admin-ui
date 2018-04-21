@@ -1,0 +1,17 @@
+<div *ngIf="queue.length > 0">
+    <p>
+      Upload Queue
+    </p>
+    <ul>
+      <ng-container *ngFor="let file of queue; let i = index">
+        <li *ngIf="i < 2">
+          {{ file.name }}
+
+          <img src="{{previewForName(file.name)}}" width="100">
+        </li>
+      </ng-container>
+      <li *ngIf="queue.length > 2">
+        and {{queue.length-2}} more...
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,17 @@
+<div class="card col photo-card">
+  <photo-thumbnail [class]="'card-img-top'" (clicked)="onPhotoClicked($event)" [collection]="collection" [photo]="photo" [renditionConfiguration]="rendition"></photo-thumbnail>
+  <div class="card-body">
+
+    <p>
+      <span *ngIf="photo.takenAt" class="badge badge-secondary" title="Date the photo was taken">
+        <i class="fa fa-camera fa-lg"></i> {{ photo.takenAt | date: 'mediumDate'}}
+      </span>
+      <span class="badge badge-secondary" title="Date the photo was uploaded">
+        <i class="fa fa-upload"></i>
+         {{photo.createdAt | date: 'mediumDate'}}
+      </span>
+    </p>
+
+    <photo-detail-link [collection]="collection" [photo]="photo">details</photo-detail-link>
+  </div>
+</div>

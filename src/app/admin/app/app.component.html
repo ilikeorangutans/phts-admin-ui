@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a routerLink="/admin" class="navbar-brand">phts</a>
+    <button (click)="toggleNav()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="navBarClasses">
+      <ul class="navbar-nav mr-auto">
+        <li *ngFor="let navItem of navItems" class="nav-item">
+          <a routerLink="{{navItem.link}}" class="nav-link" routerLinkActive="active" (click)="toggleNav()">
+            {{ navItem.title }}
+          </a>
+        </li>
+      </ul>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </div>
+  </nav>
+</header>
+
+<main class="mb-5">
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer class="text-muted footer">
+  <div class="container">
+    <span class="version" *ngIf="phtsService.version | async; let version; else loadingVersion">
+      <strong>phts</strong> sha <em>{{version.sha}}</em>, built <em>{{version.buildTime}}</em>
+    </span>
+    <ng-template class="version" #loadingVersion>
+      <app-spinner></app-spinner>
+      retrieving version from server...
+    </ng-template>
+  </div>
+</footer>

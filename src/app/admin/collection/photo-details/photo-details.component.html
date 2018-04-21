@@ -1,0 +1,23 @@
+<div *ngIf="photo | async; let photo; else loading;">
+
+  <div class="btn-group mb-3" role="group" aria-label="Photo Operations">
+    <button class="btn-secondary btn">Share</button>
+    <button (click)="delete(photo)" class="btn btn-danger">Delete</button>
+  </div>
+
+  <div></div>
+  <photo-thumbnail [collection]="collection" [photo]="photo" [renditionConfiguration]="previewRendition"></photo-thumbnail>
+
+  <ul>
+    <li *ngFor="let rendition of photo.renditions">
+      {{configByRendition(rendition).name}}: {{rendition.width}}&times;{{rendition.height}} <a (click)="selectPreview(rendition.renditionConfigurationID)">view</a>
+    </li>
+  </ul>
+
+  <collection-photo-share [photoShares]="shares" [photo]=photo [collection]=collection [renditionConfigurations]="configs"></collection-photo-share>
+  <collection-photo-share-list [photoShares]="shares"></collection-photo-share-list>
+</div>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+  <p>loading...</p>
+</ng-template>

@@ -1,0 +1,11 @@
+<div *ngIf="visible | async">
+  <div class="overlay position-fixed">
+  </div>
+  <div class="contents position-fixed">
+    <button type="button" class="close" aria-label="Close" (click)="hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>
+

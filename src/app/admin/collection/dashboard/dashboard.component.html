@@ -1,0 +1,15 @@
+<div class="btn-group mb-3" role="group">
+  <button class="btn-secondary btn-success btn" (click)="showCreationDialog()">
+    New Collection
+  </button>
+  <button class="btn-secondary btn" (click)="refresh()" [ngClass]="buttonClasses">
+    Refresh
+  </button>
+</div>
+
+<div *ngIf="creationFormVisible">
+  <collection-form (collectionCreated)="onCollectionCreated()"></collection-form>
+</div>
+
+<collection-browser [numEntries]=5 [collections]="recentCollections"></collection-browser>
+

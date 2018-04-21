@@ -1,0 +1,16 @@
+<p>
+  Share Sites
+</p>
+
+<ul>
+  <li *ngFor="let site of shareSites">
+    {{site.id}} {{site.domain}} <a href="http://{{site.domain}}" target="_blank">visit</a> <em>TODO add protocol here (http|https)</em>
+  </li>
+</ul>
+
+<form (ngSubmit)="onSubmit()">
+  <label for="name">Domain</label>
+  <input type="text" id="domain" name="domain" [(ngModel)]="shareSite.domain" placeholder="Domain"/>
+
+  <button type="submit">Save</button>
+</form>

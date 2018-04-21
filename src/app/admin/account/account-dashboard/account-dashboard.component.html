@@ -1,0 +1,22 @@
+
+<h2 *ngIf="user">
+  {{ user.email }}
+</h2>
+
+<fieldset>
+  <legend>Change Password</legend>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="oldPassword">Existing Password</label>
+    <input type="password" id="oldPassword" name="oldPassword" [(ngModel)]="passwordChangeRequest.oldPassword" placeholder="Existing Password"/>
+
+    <label for="password">New Password</label>
+    <input type="password" id="password" name="password" [(ngModel)]="passwordChangeRequest.password" placeholder="New Password"/>
+
+    <label for="passwordConfirm">Confirm Password</label>
+    <input type="passwordConfirm" id="passwordConfirm" name="passwordConfirm" [(ngModel)]="passwordChangeRequest.passwordConfirm" placeholder="Confirm Password"/>
+
+    <button type="submit" [disabled]="!passwordChangeRequest.match()">Save</button>
+  </form>
+
+</fieldset>

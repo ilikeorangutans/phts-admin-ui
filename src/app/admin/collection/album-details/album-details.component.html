@@ -1,0 +1,58 @@
+<div *ngIf="album | async; let album; else loading">
+  <h2>{{album.name}}</h2>
+
+  <div class="btn-toolbar mb-2" role="toolbar">
+    <div class="btn-group mr-2" role="group">
+      <button class="btn btn-outline-secondary" type="button" (click)="toggleOrganizePhotos()">
+        Organize Photos
+      </button>
+      <button class="btn btn-outline-secondary" type="button" (click)="shareAlbumDialog()">
+        Share Album
+      </button>
+      <button class="btn btn-outline-secondary" type="button">
+        Album Settings
+      </button>
+      <button type="button" class="btn btn-outline-danger" (click)="delete(album)">
+        Delete Album
+      </button>
+    </div>
+    <div class="btn-group mr-2" role="group" *ngIf="selection.isNotEmpty()">
+      <button type="button" class="btn btn-secondary" (click)="selection.deselect()">
+        Clear Selection
+      </button>
+      <button type="button" class="btn btn-secondary">
+        Remove from Album
+      </button>
+      <button type="button" class="btn btn-danger">
+        Delete {{selection.selected.length}} Photo(s)
+      </button>
+     </div>
+  </div>
+  <p>
+    TODO add share button, add photo upload, add selectable photos and add ability to reorder/remove from album/pick cover photo/delete
+  </p>
+  <p>
+    TODO: organize mode should make the selection boxes on photos visible
+  </p>
+
+
+  <app-photo-upload [collection]="collection" [album]="album"></app-photo-upload>
+
+  <app-photo-selection #selection></app-photo-selection>
+
+  <div class="row justify-content-center">
+    <div *ngFor="let photo of photos | async" class="col mb-2 mr-2">
+      <photo-selectable-container [photo]="photo" [selected]="selection.isSelected(photo)" (change)="selection.onPhotoSelect($event)">
+        <photo-thumbnail [photo]="photo" [collection]="collection" [renditionConfiguration]="thumbnailRendition" (clicked)="onPhotoClicked($event)"></photo-thumbnail>
+
+        <div class="btn-group">
+          <button class="btn btn-secondary" type="button" (click)="setCoverPhoto(album, photo)">set cover photo</button>
+          <photo-detail-link [photo]="photo" [collection]="collection">details</photo-detail-link>
+        </div>
+
+      </photo-selectable-container>
+    </div>
+  </div>
+
+</div>
+<ng-template #loading>Loading...</ng-template>

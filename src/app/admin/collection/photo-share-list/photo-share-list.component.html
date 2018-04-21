@@ -1,0 +1,30 @@
+<div class="btn-bar mb-2">
+  <button class="btn btn-secondary" (click)="photoShares.reload()">reload shares</button>
+</div>
+
+  <div *ngFor="let share of photoShares.all | async" class="card mb-1">
+    <div class="card-header">
+      {{share.shareSite.domain}}/share/{{share.slug}}
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        {{share.createdAt | date:'medium' }}
+      </p>
+      <p class="card-text">
+        Full URL: http://{{share.shareSite.domain}}/share/{{share.slug}}
+      </p>
+      <p class="card-text">
+        Shared renditions:
+        <span *ngFor="let config of share.renditionConfigurations" class="badge badge-secondary badge-pill mr-1" [ngClass]="renditionClasses(config)">
+          {{config.name}}
+        </span>
+      </p>
+    </div>
+    <div class="card-body">
+      <a href="http://{{share.shareSite.domain}}/share/{{share.slug}}" target="_blank" class="btn btn-primary">
+        Visit
+      </a>
+      <button class="btn btn-small btn-danger" (click)="delete(share)">Delete</button>
+    </div>
+  </div>
+

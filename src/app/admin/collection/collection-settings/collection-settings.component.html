@@ -1,0 +1,24 @@
+
+<h3>Renditions</h3>
+
+<div>
+  <dl class="row">
+    <ng-container *ngFor="let config of configurations">
+      <dt class="col-sm-3">
+        <i class="fa fa-lock" *ngIf="config.private"></i>
+        {{config.name}}
+      </dt>
+      <dd class="col-sm-9">
+        <span *ngIf="config.resize">
+          resize to {{config.width}}&times;{{config.height}}
+        </span>
+      </dd>
+    </ng-container>
+  </dl>
+</div>
+
+<em>TODO: add dialog to add new configs</em>
+
+<h3>Delete Collection</h3>
+<p>This will delete the collection and all <em>{{collection.photoCount}}</em> photos in it!</p>
+<div><button class="btn btn-danger" (click)="delete()">Delete Collection</button></div>

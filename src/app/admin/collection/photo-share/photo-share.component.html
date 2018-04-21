@@ -1,0 +1,40 @@
+<fieldset>
+  <legend>
+    Share Photo
+  </legend>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label for="domain">Share on</label>
+      </div>
+      <div class="col-auto">
+        <select size="1" name="domain" [(ngModel)]="share.shareSiteID" class="form-control mb-2">
+          <option *ngFor="let site of shareSites | async" [ngValue]=site.id>{{site.domain}}</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <select size="1" name="slugStrategy" [(ngModel)]="share.slugStrategy" class="form-control mb-2">
+          <option [ngValue]="'static'">specify slug</option>
+          <option [ngValue]="'random'">random slug</option>
+        </select>
+      </div>
+      <div class="col-auto" *ngIf="share.slugStrategy == 'static'">
+        <label class="sr-only" for="slug">Slug</label>
+        <input type="text" id="slug" name="slug" [(ngModel)]="share.slug" placeholder="Slug" class="form-control mb-2"/>
+      </div>
+      <div class="col-auto">
+        <label for="domain">share renditions</label>
+      </div>
+      <div class="col-auto">
+        <select size="3" multiple name="allowedRenditions" [(ngModel)]="share.allowedRenditions" class="form-control mb-2">
+          <option *ngFor="let config of renditionConfigurations" [ngValue]=config.id>{{config.name}}</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">
+          Share
+        </button>
+      </div>
+    </div>
+  </form>
+</fieldset>

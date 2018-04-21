@@ -1,0 +1,7 @@
+
+<div class="container-fluid" *ngIf="collections | async; let collections; else loading">
+  <collection-card *ngFor="let collection of collections" [collection]="collection"></collection-card>
+</div>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

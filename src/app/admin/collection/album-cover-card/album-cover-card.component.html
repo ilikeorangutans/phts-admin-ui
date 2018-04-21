@@ -1,0 +1,11 @@
+<div class="card album-cover-card mr-2 mb-2">
+  <photo-thumbnail [class]="'card-img-top'" *ngIf="coverPhoto | async; let photo" [collection]="collection" [photo]="photo" [renditionConfiguration]="renditionConfig"></photo-thumbnail>
+  <div class="card-body">
+    <h5 class="card-title">
+      <a routerLink="{{album.id}}">
+        {{album.name}}
+      </a>
+    </h5>
+    {{album.photoCount}} photos
+  </div>
+</div>

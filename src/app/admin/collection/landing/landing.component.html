@@ -1,0 +1,11 @@
+<ng-container *ngIf="collection">
+
+  <app-photo-upload [collection]="collection" (upload)="refreshRecentPhotos()"></app-photo-upload>
+
+</ng-container>
+
+<h3>Recent Photos</h3>
+
+<div class="row justify-content-center">
+  <photo-card *ngFor="let photo of photos | async" [photo]="photo" [collection]="collection" [rendition]="previewRendition" (photoClicked)="onPhotoClicked($event)"></photo-card>
+</div>

@@ -1,0 +1,7 @@
+
+<div [class.selected]="selected">
+  <span (click)="onChange($event)" class="position-absolute mt-1 ml-1 justify-center align-middle">
+    <i [ngClass]="classes()" style="font-size: 5rem; color: white;"></i>
+  </span>
+  <ng-content></ng-content>
+</div>

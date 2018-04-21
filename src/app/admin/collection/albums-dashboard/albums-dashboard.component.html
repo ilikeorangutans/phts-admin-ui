@@ -1,0 +1,15 @@
+<h2>Albums</h2>
+
+<div class="row ">
+  <album-cover-card *ngFor="let album of albums | async" [collection]="collection" [album]="album"></album-cover-card>
+</div>
+
+<fieldset>
+  <legend>New Album</legend>
+  <form (ngSubmit)="onSubmit()">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="album.name" placeholder="Name"/>
+
+    <button type="submit">Save</button>
+  </form>
+</fieldset>
