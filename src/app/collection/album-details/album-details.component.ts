@@ -67,7 +67,7 @@ export class AlbumDetailsComponent implements OnInit, OnDestroy {
     if (!confirm(`Delete album ${album.name}?`)) {
       return;
     }
-    this.albumService.delete(album.collection, album).subscribe(_ => this.router.navigate([`/admin/collection/${this.collection.slug}`]));
+    this.albumService.delete(album.collection, album).subscribe(_ => this.router.navigate(['collection', this.collection.slug]));
   }
 
   onPhotoClicked(photo: Photo): void {

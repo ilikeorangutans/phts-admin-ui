@@ -30,7 +30,7 @@ export class PhotoDetailLinkComponent implements OnInit {
       return '';
     }
 
-    return ['/admin/collection', this.collection.slug, 'photos', this.photo.id].join('/');
+    return ['/collection', this.collection.slug, 'photos', this.photo.id].join('/');
   }
 
 }

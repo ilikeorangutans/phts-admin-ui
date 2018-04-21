@@ -42,7 +42,7 @@ export class CollectionSettingsComponent implements OnInit {
 
     this.collectionStore.delete(this.collection);
 
-    this.router.navigate(['admin', 'collection']);
+    this.router.navigate(['collection']);
   }
 
 }
