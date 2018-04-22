@@ -69,6 +69,6 @@ export class PhotoDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     this.photoService.delete(this.collection, photo);
-    this.router.navigate(['admin', 'collection', this.collection.slug]);
+    this.router.navigate(['collection', this.collection.slug]);
   }
 }

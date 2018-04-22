@@ -3,7 +3,7 @@ import { UploadQueueService, UploadRequest } from './../../services/upload-queue
 import { PhotoService } from './../../services/photo.service';
 import { Photo } from './../../models/photo';
 import { Collection } from './../../models/collection';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -86,5 +86,22 @@ export class PhotoUploadComponent implements OnInit {
 
   onDragEnd(event: DragEvent): Boolean {
     return false;
+  }
+
+  filesSelected(event: Event) {
+    const x = event.target;
+    const files: FileList = x['files'];
+
+    const result = Array<File>();
+    for (let i = 0; i < files.length; i++) {
+      const f = files.item(i);
+      result.push(f);
+    }
+
+    for (const file of result) {
+      this.uploadQueue.enqueue(new UploadRequest(file, this.collection, this.album));
+    }
+
+    event.target['value'] = '';
   }
 }
