@@ -1,3 +1,4 @@
+import { ShareSiteStore } from './stores/share-site.store';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { PhtsService } from './services/phts.service';
@@ -64,7 +65,8 @@ import { AdminShellComponent } from './admin-shell/admin-shell.component';
     UploadQueueService,
     ShareService,
     AlbumService,
-    PhtsService
+    PhtsService,
+    ShareSiteStore
   ],
   bootstrap: [AppComponent]
 })

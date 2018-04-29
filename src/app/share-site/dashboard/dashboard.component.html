@@ -1,12 +1,26 @@
-<p>
-  Share Sites
-</p>
+<div class="btn-group mb-3" role="group">
+  <button class="btn-secondary btn" (click)="shareSiteStore.refresh()">
+    Refresh
+  </button>
+</div>
 
-<ul>
-  <li *ngFor="let site of shareSites">
-    {{site.id}} {{site.domain}} <a href="http://{{site.domain}}" target="_blank">visit</a> <em>TODO add protocol here (http|https)</em>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-sm-4 mb-2" *ngFor="let site of shareSiteStore.all | async">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{site.domain}}</h5>
+      </div>
+      <div class="card-body">
+        Created {{site.createdAt | date}}
+      </div>
+      <div class="card-body">
+        <a href="http://{{site.domain}}" class="card-link btn btn-outline-primary" target="_blank">Visit</a>
+        <a href="#" class="card-link btn btn-outline-secondary">Shared...</a>
+        <button type="button" class="card-link btn-small btn btn-outline-danger" (click)="delete(site)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <form (ngSubmit)="onSubmit()">
   <label for="name">Domain</label>

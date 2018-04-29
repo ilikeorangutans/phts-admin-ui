@@ -1,6 +1,10 @@
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ShareSite } from './../../models/share-site';
 import { Component, OnInit } from '@angular/core';
 import { ShareSiteService } from '../../services/share-site.service';
+import { Subject } from 'rxjs/Subject';
+import { ShareSiteStore } from '../../stores/share-site.store';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,30 +13,26 @@ import { ShareSiteService } from '../../services/share-site.service';
 })
 export class DashboardComponent implements OnInit {
 
-  shareSites: Array<ShareSite> = [];
-
   shareSite: ShareSite = new ShareSite();
 
   constructor(
-    private shareSiteService: ShareSiteService
+    readonly shareSiteStore: ShareSiteStore
   ) { }
 
   ngOnInit() {
-    this.loadShareSites();
-  }
 
-  loadShareSites() {
-    this.shareSiteService.list()
-      .first()
-      .subscribe(sites => this.shareSites = sites);
+    this.shareSiteStore.refresh();
   }
 
   onSubmit() {
-    this.shareSiteService.save(this.shareSite)
-      .then(shareSite => {
-        this.loadShareSites();
-        this.shareSite = new ShareSite();
-      });
+  }
+
+  delete(shareSite: ShareSite): void {
+    if (!confirm(`Delete share site "${shareSite.domain}"?`)) {
+      return;
+    }
+
+    this.shareSiteStore.delete(shareSite);
   }
 
 }
