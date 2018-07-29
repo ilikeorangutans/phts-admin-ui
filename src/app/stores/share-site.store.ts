@@ -23,4 +23,11 @@ export class ShareSiteStore {
   delete(shareSite: ShareSite): void {
     console.log('implement me!');
   }
+
+  save(shareSite: ShareSite): void {
+    console.log('saving share site');
+    this.shareSiteService.save(shareSite)
+      .first()
+      .subscribe(_ => this.refresh());
+  }
 }

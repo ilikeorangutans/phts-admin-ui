@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
+    this.shareSiteStore.save(this.shareSite);
   }
 
   delete(shareSite: ShareSite): void {

@@ -28,12 +28,8 @@ export class ShareSiteService {
       });
   }
 
-  save(shareSite: ShareSite): Promise<ShareSite> {
+  save(shareSite: ShareSite): Observable<ShareSite> {
     const url = this.pathService.shareSites();
-    return this.http.post<ShareSite>(url, shareSite)
-      .toPromise()
-      .then((response) => {
-        return response;
-      });
+    return this.http.post<ShareSite>(url, shareSite);
   }
 }
